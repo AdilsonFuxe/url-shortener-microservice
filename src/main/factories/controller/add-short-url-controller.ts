@@ -5,7 +5,7 @@ import { AddShortUrlController } from '../../../interface/controllers';
 import { Controller } from '../../../interface/protocols';
 import { UrlValidatorAdapter } from '../../../validator';
 
-const makeAddShortUrlController = (): Controller => {
+export const makeAddShortUrlController = (): Controller => {
   const shortUrlMongooseRepository = new ShortUrlMongooseRepository();
   const generateKeyAdapter = new GenerateKeyAdapter();
   const dbAddShortUrl = new DbAddShortUrl(
