@@ -5,7 +5,6 @@
   "main": "index.js",
   "scripts": {
     "build": "rimraf dist && tsc",
-    "prestart": "npm run build",
     "start": "node dist/server.js"
   },
   "keywords": [],
