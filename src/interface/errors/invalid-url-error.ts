@@ -1,6 +1,6 @@
 export class InvalidUrlError extends Error {
   constructor() {
-    super('invalid url');
+    super('invalid URL');
     this.name = 'InvalidUrlError';
   }
 }
