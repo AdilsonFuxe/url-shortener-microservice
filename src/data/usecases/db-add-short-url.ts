@@ -1,7 +1,7 @@
 import { AddShortUrl } from '../../domain/usecases';
 import { AddShortUrlRepository, GenerateKey } from '../protocols';
 
-export class DbAddShortUrlRepository implements AddShortUrl {
+export class DbAddShortUrl implements AddShortUrl {
   constructor(
     private readonly addShortUrlRepository: AddShortUrlRepository,
     private readonly generateKey: GenerateKey
