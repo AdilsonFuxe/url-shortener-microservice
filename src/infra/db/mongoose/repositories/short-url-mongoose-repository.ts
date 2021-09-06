@@ -1,4 +1,5 @@
 import {
+  AddClickRepository,
   AddShortUrlRepository,
   LoadUrlByKeyRepository,
 } from '../../../../data/protocols';
@@ -6,7 +7,7 @@ import { MongoHelper } from '../helper';
 import { ShortUrlMongooseModel } from '../models';
 
 export class ShortUrlMongooseRepository
-  implements AddShortUrlRepository, LoadUrlByKeyRepository
+  implements AddShortUrlRepository, LoadUrlByKeyRepository, AddClickRepository
 {
   async add({
     key,
@@ -21,5 +22,12 @@ export class ShortUrlMongooseRepository
   async loadByKey(key: string): Promise<LoadUrlByKeyRepository.Response> {
     const url = await ShortUrlMongooseModel.findOne({ shortUrl: key }).lean();
     return MongoHelper.serialize(url);
+  }
+
+  async addClick(key: string): Promise<void> {
+    await ShortUrlMongooseModel.findOneAndUpdate(
+      { shortUrl: key },
+      { $inc: { clicks: 1 } }
+    );
   }
 }
